@@ -2,18 +2,18 @@ version: 0.2
 
 phases:
   install:
-    #runtime-versions:
-    #nodejs: 18
     commands:
       - npm ci
   build:
     commands:
       - npm run build
+      - echo "📂 Listing contents of dist directory:"
+      - ls -al dist || echo "No dist directory found"
   post_build:
     commands:
-      - aws s3 sync build/ s3://cloudcomputingproject-bucket-3f109847 --delete
+      - aws s3 sync dist/ s3://cloudcomputingproject-bucket-3f109847 --delete
 
 artifacts:
   files:
     - "**/*"
-  base-directory: build
+  base-directory: dist
