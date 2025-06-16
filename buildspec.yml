@@ -1,13 +1,25 @@
 version: 0.2
- 
+
 phases:
   install:
     commands:
       - npm install
   build:
     commands:
-      - npm run build  # Builds the project
+      - echo "Starting React app build..."
+      - npm run build # Builds the project
+      - echo "Build command finished. Checking directory contents:"
+      - ls -la # List contents of the current directory (root of the project)
+      - echo "Listing contents of 'build' directory (if it exists):"
+      - |
+          if [ -d "build" ]; then
+            ls -la build # List contents if 'build' directory exists
+          else
+            echo "'build' directory does not exist."
+          fi
+      - echo "Finished directory checks."
+
 artifacts:
   files:
     - '**/*'
-  base-directory: build  # Directory with output files (e.g., React app)
+  base-directory: build # Directory with output files (e.g., React app)
