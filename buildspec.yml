@@ -11,7 +11,7 @@ phases:
       - npm run build
   post_build:
     commands:
-      - aws s3 sync build/ s3://cloudcomputingproject-bucket-3f109847 --delete
+      - aws s3 sync build/ s3://cloudcomputingproject-bucket-fe822512 --region us-east-1 --delete
 
 artifacts:
   files:
